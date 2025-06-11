@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -14,25 +15,39 @@
   <body>
     <header class="site-header">
       <h1 class="logo">BookCulture</h1>
-      <a href="carrinho.html" class="cart-button">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="cart-count">0</span>
-      </a>
     </header>
 
     <nav class="main-nav">
-      <ul class="nav-menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-        <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="novidade.html">Novidades</a></li>
+       <ul class="nav-menu">
+        <li><a href="index.php">Home</a></li>
+        <li><a href="sobre.php">Sobre</a></li>
+        <li><a href="produtos.php">Produtos</a></li>
+        <li><a href="novidade.php">Novidades</a></li>
       </ul>
-      <div class="login-link">
-        <a href="login.html">Login</a>
-      </div>
-      <button class="hamburger-menu" aria-label="Abrir menu">
+
+<div class="nav-actions">
+
+    <div class="register-link"> <?php if (isset($_SESSION['user_id'])): ?>
+            
+            <p>Olá, Seja Bem-Vindo(a) <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
+            <a href="logout.php">Sair</a>
+
+        <?php else: ?>
+
+            <a href="registrar.php">Login</a>
+            <p>ou</p>
+            <a href="registrar.php">Cadastrar-se</a>
+
+        <?php endif; ?>
+        
+    </div> <a href="carrinho.php" class="cart-button">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cart-count">0</span>
+    </a>
+</div>
+    <button class="hamburger-menu" aria-label="Abrir menu">
         <i class="fa-solid fa-bars"></i>
-      </button>
+    </button>
     </nav>
 
     <main class="main-content">
@@ -49,16 +64,16 @@
         <div class="product-grid">
           <div class="product-card">
             <img
-              src="img/produto 6.jpeg"
-              alt="A Good Girl's Guide to Murder"
+              src="img/produto 14.jpg"
+              alt="Amanhecer na Colheita"
               class="product-image"
             />
             <div class="product-info">
-              <h3 class="product-title">A Good Girl's Guide to Murder</h3>
-              <p class="product-price">R$ 59,90</p>
+              <h3 class="product-title">Amanhecer na Colheita</h3>
+              <p class="product-price">R$ 50,00</p>
               <p class="product-description">
-                Pippa investiga um assassinato antigo e descobre segredos
-                perigosos.
+                A história do jovem Haymitch Abernathy e sua jornada como tributo
+                durante o temido 50º Jogos Vorazes, o Segundo Massacre Quaternário.
               </p>
               <button class="buy-button">Comprar</button>
             </div>
@@ -66,16 +81,16 @@
 
           <div class="product-card">
             <img
-              src="img/produto 7.jpeg"
-              alt="Imperfeitos"
+              src="img/produto 13.jpg"
+              alt="Duna: livro 1"
               class="product-image"
             />
             <div class="product-info">
-              <h3 class="product-title">Imperfeitos</h3>
-              <p class="product-price">R$ 49,90</p>
+              <h3 class="product-title">Duna: livro 1</h3>
+              <p class="product-price">R$ 69,00</p>
               <p class="product-description">
-                Uma jornada de amizade, amor e superação das imperfeições
-                humanas.
+                O herdeiro de uma nobre família, Paul Atreides, precisa sobreviver à traição e dominar 
+                um perigoso planeta desértico para controlar o destino do universo.
               </p>
               <button class="buy-button">Comprar</button>
             </div>
@@ -83,32 +98,32 @@
 
           <div class="product-card">
             <img
-              src="img/produto 8.jpeg"
+              src="img/produto 8.jpg"
               alt="Os Sete Maridos de Evelyn Hugo"
               class="product-image"
             />
             <div class="product-info">
               <h3 class="product-title">Os Sete Maridos de Evelyn Hugo</h3>
-              <p class="product-price">R$ 69,90</p>
+              <p class="product-price">R$ 59,90</p>
               <p class="product-description">
-                A história da vida glamorosa e cheia de segredos de uma estrela
-                de Hollywood.
+              Uma icônica estrela de cinema revela 
+              a uma jornalista os segredos de seus sete casamentos e o grande amor de sua vida.
               </p>
               <button class="buy-button">Comprar</button>
             </div>
           </div>
           <div class="product-card">
             <img
-              src="img/produto 5.jpeg"
-              alt="Os Sete Maridos de Evelyn Hugo"
+              src="img/produto 16.jpg"
+              alt="Holly"
               class="product-image"
             />
             <div class="product-info">
-              <h3 class="product-title">A Biblioteca da Meia-Noite</h3>
-              <p class="product-price">R$ 30,90</p>
+              <h3 class="product-title">Holly</h3>
+              <p class="product-price">R$ 70,90</p>
               <p class="product-description">
-                Nora encontra livros que representam diferentes vidas que ela
-                poderia ter tido, cada um com um caminho diferente.
+                Uma detetive particular aceita um caso de desaparecimento 
+                que a leva a confrontar um mal inimaginável, escondido por trás de uma fachada comum.
               </p>
               <button class="buy-button">Comprar</button>
             </div>
@@ -129,10 +144,10 @@
         <div class="footer-column">
           <h4 class="footer-title">Links Rápidos</h4>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="produtos.html">Todos os Produtos</a></li>
-            <li><a href="novidade.html">Novidades</a></li>
-            <li><a href="sobre.html">Sobre Nós</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="produtos.php">Todos os Produtos</a></li>
+            <li><a href="novidade.php">Novidades</a></li>
+            <li><a href="sobre.php">Sobre Nós</a></li>
           </ul>
         </div>
 

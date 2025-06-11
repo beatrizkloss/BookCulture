@@ -10,6 +10,23 @@
     font-size: 1.8rem;
     cursor: pointer;
   }
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .cart-button {
+    font-size: 1.2rem;
+  }
+  #cart-count {
+    font-size: 0.5rem;
+  }
+  .register-link {
+    font-size: 0.8rem;
+  }
+  .register-link p {
+    font-size: 0.7rem;
+  }
   .main-nav > .nav-menu,
   .main-nav > .login-link {
     display: none;
@@ -55,7 +72,7 @@
   }
   .section-title {
     font-size: 1.6rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.8rem;
   }
   .logo {
     font-size: 1.4rem;

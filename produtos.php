@@ -1,10 +1,11 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Produtos - BookCulture</title>
+    <title>BookCulture</title>
 
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/media-queries.css" />
@@ -17,44 +18,63 @@
   <body>
     <header class="site-header">
       <h1 class="logo">BookCulture</h1>
-      <a href="carrinho.html" class="cart-button">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="cart-count">0</span>
-      </a>
     </header>
 
     <nav class="main-nav">
       <ul class="nav-menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-        <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="novidade.html">Novidades</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="sobre.php">Sobre</a></li>
+        <li><a href="produtos.php">Produtos</a></li>
+        <li><a href="novidade.php">Novidades</a></li>
       </ul>
-      <div class="login-link">
-        <a href="login.html">Login</a>
-      </div>
-      <button class="hamburger-menu" aria-label="Abrir menu">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </nav>
 
+      <div class="nav-actions">
+
+    <div class="register-link"> <?php if (isset($_SESSION['user_id'])): ?>
+            
+            <p>Olá, Seja Bem-Vindo(a) <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
+            <a href="logout.php">Sair</a>
+
+        <?php else: ?>
+
+            <a href="registrar.php">Login</a>
+            <p>ou</p>
+            <a href="registrar.php">Cadastrar-se</a>
+
+        <?php endif; ?>
+        
+    </div> <a href="carrinho.php" class="cart-button">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cart-count">0</span>
+    </a>
+    
+</div>
+    <button class="hamburger-menu" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    </nav>
     <main class="main-content">
       <section class="product-showcase">
         <h2 class="section-title">Nossos Produtos</h2>
-
+    <p class="section-intro">
+          Explore nosso universo de histórias. Aqui na BookCulture,
+          cada livro foi selecionado para inspirar, entreter e transformar.
+          Mergulhe em nosso catálogo completo e encontre a leitura perfeita para o seu momento.
+    </p>
         <div class="product-grid">
           <div class="product-card">
             <img
               src="img/produto 1.jpg"
-              alt="A Good Girl's Guide to Murder"
+              alt="Daisy Jones and The Six"
               class="product-image"
             />
             <div class="product-info">
-              <h3 class="product-title">A Good Girl's Guide to Murder</h3>
-              <p class="product-price">R$ 49,90</p>
+              <h3 class="product-title">Daisy Jones and The Six</h3>
+              <p class="product-price">R$ 40,00</p>
               <p class="product-description">
-                Pippa investiga um assassinato antigo em sua cidade e descobre
-                segredos perigosos.
+                Narrado como um documentário, o livro revela os bastidores 
+                da ascensão meteórica e
+                da separação misteriosa da maior banda de rock dos anos 70.
               </p>
               <button class="buy-button">Comprar</button>
             </div>
@@ -63,14 +83,16 @@
           <div class="product-card">
             <img
               src="img/produto 2.jpg"
-              alt="Imperfeitos"
+              alt="Pessoas normais"
               class="product-image"
             />
             <div class="product-info">
-              <h3 class="product-title">Imperfeitos</h3>
+              <h3 class="product-title">Pessoas normais</h3>
               <p class="product-price">R$ 39,90</p>
               <p class="product-description">
-                Uma história tocante sobre amor, amizade e crescimento pessoal.
+              Dois jovens da mesma cidade, mas de mundos diferentes, 
+              iniciam uma conexão complexa e magnética que
+              irá definir suas vidas nos anos seguintes.
               </p>
               <button class="buy-button">Comprar</button>
             </div>
@@ -79,15 +101,31 @@
           <div class="product-card">
             <img
               src="img/produto 3.jpeg"
-              alt="Os Sete Maridos de Evelyn Hugo"
+              alt="O homem de giz"
               class="product-image"
             />
             <div class="product-info">
-              <h3 class="product-title">Os Sete Maridos de Evelyn Hugo</h3>
-              <p class="product-price">R$ 59,90</p>
+              <h3 class="product-title">O homem de giz</h3>
+              <p class="product-price">R$ 34,00</p>
               <p class="product-description">
-                A história da vida glamorosa e cheia de segredos de uma estrela
-                de Hollywood.
+              Décadas após um jogo infantil terminar em tragédia, 
+              os segredos de um verão retornam para assombrar um grupo de amigos.
+              </p>
+              <button class="buy-button">Comprar</button>
+            </div>
+          </div>
+                    <div class="product-card">
+            <img
+              src="img/produto 4.jpeg"
+              alt="O Meu Pé de Laranja Lima"
+              class="product-image"
+            />
+            <div class="product-info">
+              <h3 class="product-title">O Meu Pé de Laranja Lima</h3>
+              <p class="product-price">R$ 35,00</p>
+              <p class="product-description">
+                A história de Zezé, um menino de seis anos que encontra consolo e amizade em um pé de laranja lima, 
+                enquanto enfrenta a dura realidade de sua vida familiar.
               </p>
               <button class="buy-button">Comprar</button>
             </div>
@@ -108,10 +146,10 @@
         <div class="footer-column">
           <h4 class="footer-title">Links Rápidos</h4>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="produtos.html">Todos os Produtos</a></li>
-            <li><a href="novidade.html">Novidades</a></li>
-            <li><a href="sobre.html">Sobre Nós</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="produtos.php">Todos os Produtos</a></li>
+            <li><a href="novidade.php">Novidades</a></li>
+            <li><a href="sobre.php">Sobre Nós</a></li>
           </ul>
         </div>
         <div class="footer-column">

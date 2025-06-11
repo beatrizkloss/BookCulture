@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -14,25 +15,41 @@
   <body>
     <header class="site-header">
       <h1 class="logo">BookCulture</h1>
-      <a href="carrinho.html" class="cart-button">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="cart-count">0</span>
-      </a>
     </header>
 
     <nav class="main-nav">
       <ul class="nav-menu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="sobre.html">Sobre</a></li>
-        <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="novidade.html">Novidades</a></li>
+        <li><a href="index.php">Home</a></li>
+        <li><a href="sobre.php">Sobre</a></li>
+        <li><a href="produtos.php">Produtos</a></li>
+        <li><a href="novidade.php">Novidades</a></li>
       </ul>
-      <div class="login-link">
-        <a href="login.html">Login</a>
-      </div>
-      <button class="hamburger-menu" aria-label="Abrir menu">
+
+
+<div class="nav-actions">
+
+    <div class="register-link"> <?php if (isset($_SESSION['user_id'])): ?>
+            
+            <p>Olá, Seja Bem-Vindo(a) <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
+            <a href="logout.php">Sair</a>
+
+        <?php else: ?>
+
+            <a href="registrar.php">Login</a>
+            <p>ou</p>
+            <a href="registrar.php">Cadastrar-se</a>
+
+        <?php endif; ?>
+        
+    </div> <a href="carrinho.php" class="cart-button">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cart-count">0</span>
+    </a>
+    
+</div>
+    <button class="hamburger-menu" aria-label="Abrir menu">
         <i class="fa-solid fa-bars"></i>
-      </button>
+    </button>
     </nav>
 
     <footer class="site-footer">
@@ -48,10 +65,10 @@
         <div class="footer-column">
           <h4 class="footer-title">Links Rápidos</h4>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="produtos.html">Todos os Produtos</a></li>
-            <li><a href="novidade.html">Novidades</a></li>
-            <li><a href="sobre.html">Sobre Nós</a></li>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="produtos.php">Todos os Produtos</a></li>
+            <li><a href="novidade.php">Novidades</a></li>
+            <li><a href="sobre.php">Sobre Nós</a></li>
           </ul>
         </div>
 
