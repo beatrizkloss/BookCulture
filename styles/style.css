@@ -495,20 +495,3 @@ body {
   font-size: 1.1rem;
   color: #555;
 }
-
-/* Estilo para os links de alternar formulário */
-.form-toggle {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-}
-
-.form-toggle a {
-  color: #6a1b9a;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.form-toggle a:hover {
-  text-decoration: underline;
-}

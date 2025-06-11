@@ -68,7 +68,7 @@ if (isset($_POST['login_user'])) {
     </button>
     </nav>
     <main class="main-content">
-         <div class="auth-header">
+        <div class="auth-header">
         <h2>Seja bem-vindo(a) à BookCulture!</h2>
         <p>Faça o login para continuar ou cadastre-se para começar sua jornada literária.</p>
     </div>
