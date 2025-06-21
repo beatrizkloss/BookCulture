@@ -1,7 +1,4 @@
 @media (max-width: 768px) {
-  .main-nav {
-    position: relative;
-  }
   .hamburger-menu {
     display: block;
     background: none;
@@ -10,52 +7,38 @@
     font-size: 1.8rem;
     cursor: pointer;
   }
-  .nav-actions {
-    display: flex;
-    align-items: center;
+  .main-nav .nav-menu {
+    display: none;
+  }
+  .nav-right {
     gap: 1rem;
   }
-  .cart-button {
-    font-size: 1.2rem;
-  }
-  #cart-count {
-    font-size: 0.5rem;
-  }
-  .register-link {
+  .user-info p,
+  .dropdown-toggle {
     font-size: 0.8rem;
   }
-  .register-link p {
-    font-size: 0.7rem;
-  }
-  .main-nav > .nav-menu,
-  .main-nav > .login-link {
-    display: none;
+  .user-info .logout-button,
+  .dropdown-toggle {
+    padding: 0.4rem 0.6rem;
   }
   .nav-menu.active {
     display: block;
     position: absolute;
     top: 100%;
     left: 0;
-    right: 0;
+    width: 100%;
     background-color: white;
     border-radius: 0 0 12px 12px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     animation: fadeInDown 0.3s ease-in-out;
   }
+
   .nav-menu.active li a {
     display: block;
     padding: 1rem 1.5rem;
     color: #333;
-    text-align: left;
-    font-weight: 500;
-    border-bottom: 1px solid #f0f0f0;
   }
-  .nav-menu.active li:last-child a {
-    border-bottom: none;
-  }
-  .nav-menu.active li a:hover {
-    background-color: #f8f8f8;
-  }
+
   @keyframes fadeInDown {
     from {
       opacity: 0;
@@ -66,7 +49,6 @@
       transform: translateY(0);
     }
   }
-
   .main-content {
     padding: 1rem;
   }
