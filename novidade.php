@@ -18,39 +18,45 @@
       <h1 class="logo">BookCulture</h1>
     </header>
 
-    <nav class="main-nav">
-      <ul class="nav-menu">
+<nav class="main-nav">
+
+    <button class="hamburger-menu" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <ul class="nav-menu">
         <li><a href="index.php">Home</a></li>
         <li><a href="sobre.php">Sobre</a></li>
         <li><a href="produtos.php">Produtos</a></li>
         <li><a href="novidade.php">Novidades</a></li>
-      </ul>
+    </ul>
 
-<div class="nav-actions">
-
-    <div class="register-link"> <?php if (isset($_SESSION['user_id'])): ?>
-            
-            <p>Olá, Seja Bem-Vindo(a) <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
-            <a href="logout.php">Sair</a>
-
-        <?php else: ?>
-
-            <a href="registrar.php">Login</a>
-            <p>ou</p>
-            <a href="registrar.php">Cadastrar-se</a>
-
-        <?php endif; ?>
+    <div class="nav-right">
         
-    </div> <a href="carrinho.php" class="cart-button">
-        <i class="fa-solid fa-cart-shopping"></i>
-        <span id="cart-count">0</span>
-    </a>
-    
-</div>
-    <button class="hamburger-menu" aria-label="Abrir menu">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-    </nav>
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <div class="user-info">
+                <p>Olá, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
+                <a href="logout.php" class="logout-button">Sair</a>
+            </div>
+        <?php else: ?>
+            <div class="dropdown-login">
+                <span class="dropdown-toggle">
+                    <i class="fa-solid fa-user-circle"></i> Login
+                </span>
+                <div class="dropdown-menu">
+                    <a href="registrar.php">📖 Cliente</a>
+                    <a href="#">📚 Administrador</a>
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <a href="carrinho.php" class="cart-button">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count">0</span>
+        </a>
+
+    </div>
+  </nav>
 
 <main class="main-content">
     <h2 class="section-title">Novidades</h2>

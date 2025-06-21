@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: registrar.php");
+    exit(); 
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -18,6 +25,9 @@
     </header>
 
     <nav class="main-nav">
+            <button class="hamburger-menu" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
       <ul class="nav-menu">
         <li><a href="index.php">Home</a></li>
         <li><a href="sobre.php">Sobre</a></li>
@@ -26,30 +36,20 @@
       </ul>
 
 
-<div class="nav-actions">
+<div class="nav-right">
+    <div class="user-info">
+        <p>Olá, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
+        <a href="logout.php">Sair</a>
+    </div>
 
-    <div class="register-link"> <?php if (isset($_SESSION['user_id'])): ?>
-            
-            <p>Olá, Seja Bem-Vindo(a) <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
-            <a href="logout.php">Sair</a>
-
-        <?php else: ?>
-
-            <a href="registrar.php">Login</a>
-            <p>ou</p>
-            <a href="registrar.php">Cadastrar-se</a>
-
-        <?php endif; ?>
-        
-    </div> <a href="carrinho.php" class="cart-button">
+    <a href="carrinho.php" class="cart-button">
         <i class="fa-solid fa-cart-shopping"></i>
         <span id="cart-count">0</span>
     </a>
     
+
+
 </div>
-    <button class="hamburger-menu" aria-label="Abrir menu">
-        <i class="fa-solid fa-bars"></i>
-    </button>
     </nav>
 
     <footer class="site-footer">

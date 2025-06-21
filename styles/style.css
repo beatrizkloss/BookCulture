@@ -59,6 +59,13 @@ body {
   align-items: center;
   background-color: #27033dea;
   padding: 0.5rem 5%;
+  gap: 1rem;
+}
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
 }
 .nav-menu {
   list-style: none;
@@ -77,37 +84,72 @@ body {
 .nav-menu li a:hover {
   background-color: #540486ea;
 }
-.nav-actions {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-.register-link {
+
+.user-info {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
-.register-link p {
+.user-info p {
   color: #d1d1d1;
   font-size: 0.9rem;
   margin: 0;
 }
 
-.register-link a {
+.dropdown-login {
+  position: relative;
+}
+
+.dropdown-toggle,
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
   color: white;
-  text-decoration: none;
-  font-weight: 500;
   padding: 0.5rem 1rem;
   border: 1px solid white;
   border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
   transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
 }
 
-.register-link a:hover {
+.dropdown-toggle:hover,
+.logout-button:hover {
   background-color: white;
   color: #6a1b9a;
 }
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 180px;
+  z-index: 1001;
+}
 
+.dropdown-login:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: #333;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f5f5f5;
+}
 .main-content {
   padding: 2rem 5%;
 }
@@ -390,6 +432,24 @@ body {
 .error {
   background-color: #f8d7da;
   color: #721c24;
+}
+
+.form-toggle {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.form-toggle a {
+  color: #6a1b9a;
+  font-weight: bold;
+  text-decoration: none;
+  transition: text-decoration 0.2s;
+}
+
+.form-toggle a:hover {
+  text-decoration: underline;
 }
 /* --- FOOTER --- */
 .site-footer {

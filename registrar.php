@@ -56,25 +56,31 @@ if (isset($_POST['login_user'])) {
     <header class="site-header">
       <h1 class="logo">BookCulture</h1>
     </header>
-    <nav class="main-nav">
-      <ul class="nav-menu">
+<nav class="main-nav">
+    <button class="hamburger-menu" aria-label="Abrir menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <ul class="nav-menu">
         <li><a href="index.php">Home</a></li>
         <li><a href="sobre.php">Sobre</a></li>
         <li><a href="produtos.php">Produtos</a></li>
         <li><a href="novidade.php">Novidades</a></li>
-      </ul>
-          <button class="hamburger-menu" aria-label="Abrir menu">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-    </nav>
-    <main class="main-content">
-        <div class="auth-header">
+    </ul>
+
+    <div class="nav-right">
+        </div>
+</nav>
+<main class="main-content">
+
+    <div class="auth-header">
         <h2>Seja bem-vindo(a) à BookCulture!</h2>
         <p>Faça o login para continuar ou cadastre-se para começar sua jornada literária.</p>
     </div>
-      <div class="auth-container">
+
+    <div class="auth-container">
         
-        <div class="auth-form">
+        <div class="auth-form" id="login-form">
           <h2>Login</h2>
           <?php if(isset($mensagem_login)) { echo "<div class='message error'>$mensagem_login</div>"; } ?>
           <form action="registrar.php" method="POST">
@@ -83,10 +89,11 @@ if (isset($_POST['login_user'])) {
             <label for="login-password">Senha</label>
             <input type="password" id="login-password" name="senha" required />
             <button type="submit" name="login_user">Entrar</button>
+            <p class="form-toggle">Não tem uma conta? <a href="#" id="show-register">Cadastre-se</a></p>
           </form>
         </div>
 
-        <div class="auth-form">
+        <div class="auth-form" id="cadastro-form" style="display: none;">
           <h2>Cadastro</h2>
           <?php if(isset($mensagem_cadastro)) { echo "<div class='message success'>$mensagem_cadastro</div>"; } ?>
           <form action="registrar.php" method="POST">
@@ -97,11 +104,12 @@ if (isset($_POST['login_user'])) {
             <label for="register-password">Crie uma Senha</label>
             <input type="password" id="register-password" name="senha_cadastro" required />
             <button type="submit" name="register_user">Criar Conta</button>
+            <p class="form-toggle">Já tem uma conta? <a href="#" id="show-login">Faça login</a></p>
           </form>
         </div>
 
-      </div>
-    </main>
+    </div>
+</main>
 
     <footer class="site-footer">
       <div class="footer-content">
@@ -145,5 +153,6 @@ if (isset($_POST['login_user'])) {
         <p>© 2025 BookCulture. Todos os direitos reservados.</p>
       </div>
     </footer>
+    <script src="js/script.js"></script>
   </body>
 </html>
