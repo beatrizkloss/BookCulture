@@ -110,49 +110,6 @@ if (isset($_POST['login_user'])) {
 
     </div>
 </main>
-
-    <footer class="site-footer">
-      <div class="footer-content">
-        <div class="footer-column">
-          <h4 class="footer-title">BookCulture</h4>
-          <p>
-            Sua livraria online, onde cada página é uma nova aventura. Feita por
-            e para amantes de livros.
-          </p>
-        </div>
-        <div class="footer-column">
-          <h4 class="footer-title">Links Rápidos</h4>
-            <ul class="footer-links">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="produtos.php">Todos os Produtos</a></li>
-            <li><a href="novidade.php">Novidades</a></li>
-            <li><a href="sobre.php">Sobre Nós</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <h4 class="footer-title">Contato</h4>
-          <p>Precisa de ajuda? Nos envie um e-mail!</p>
-          <p><strong>Email:</strong> contato@bookculture.com.br</p>
-        </div>
-        <div class="footer-column">
-          <h4 class="footer-title">Siga-nos</h4>
-          <div class="social-links">
-            <a href="#" aria-label="Instagram"
-              ><i class="fa-brands fa-instagram"></i
-            ></a>
-            <a href="#" aria-label="Facebook"
-              ><i class="fa-brands fa-facebook"></i
-            ></a>
-            <a href="#" aria-label="Twitter"
-              ><i class="fa-brands fa-x-twitter"></i
-            ></a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>© 2025 BookCulture. Todos os direitos reservados.</p>
-      </div>
-    </footer>
     <script src="js/script.js"></script>
   </body>
 </html>

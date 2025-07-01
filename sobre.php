@@ -45,7 +45,7 @@
                 </span>
                 <div class="dropdown-menu">
                     <a href="registrar.php">📖 Cliente</a>
-                    <a href="#">📚 Administrador</a>
+                    <a href="admin/login.php">📚 Administrador</a>
                 </div>
             </div>
         <?php endif; ?>
