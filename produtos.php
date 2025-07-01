@@ -1,145 +1,70 @@
-<?php session_start(); ?>
+<?php 
+session_start();
+require_once 'services/conexao.php';
+
+// Busca TODOS os produtos no banco de dados, ordenados por nome
+$resultado_produtos = $conexao->query("SELECT * FROM produtos ORDER BY nome ASC");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+<head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BookCulture</title>
-
+    <title>Nossos Produtos - BookCulture</title>
     <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="styles/media-queries.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-  </head>
-
-  <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+</head>
+<body>
     <header class="site-header">
       <h1 class="logo">BookCulture</h1>
     </header>
-
-<nav class="main-nav">
-
-    <button class="hamburger-menu" aria-label="Abrir menu">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-
-    <ul class="nav-menu">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="sobre.php">Sobre</a></li>
-        <li><a href="produtos.php">Produtos</a></li>
-        <li><a href="novidade.php">Novidades</a></li>
-    </ul>
-
-    <div class="nav-right">
-        
-        <?php if (isset($_SESSION['user_id'])): ?>
-            <div class="user-info">
-                <p>Olá, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
-                <a href="logout.php" class="logout-button">Sair</a>
-            </div>
-        <?php else: ?>
-            <div class="dropdown-login">
-                <span class="dropdown-toggle">
-                    <i class="fa-solid fa-user-circle"></i> Login
-                </span>
-                <div class="dropdown-menu">
-                    <a href="registrar.php">📖 Cliente</a>
-                    <a href="#">📚 Administrador</a>
+    <nav class="main-nav">
+        <button class="hamburger-menu" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-menu">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="sobre.php">Sobre</a></li>
+            <li><a href="produtos.php">Produtos</a></li>
+            <li><a href="novidade.php">Novidades</a></li>
+        </ul>
+        <div class="nav-right">
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <div class="user-info">
+                    <p>Olá, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p>
+                    <a href="logout.php" class="logout-button">Sair</a>
                 </div>
-            </div>
-        <?php endif; ?>
-
-        <a href="carrinho.php" class="cart-button">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span id="cart-count">0</span>
-        </a>
-
-    </div> 
-  </nav>
+            <?php else: ?>
+                <div class="dropdown-login">
+                    <span class="dropdown-toggle"><i class="fa-solid fa-user-circle"></i> Login</span>
+                    <div class="dropdown-menu">
+                        <a href="registrar.php">📖 Cliente</a>
+                        <a href="admin/login.php">📚 Administrador</a>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <a href="carrinho.php" class="cart-button"><i class="fa-solid fa-cart-shopping"></i><span id="cart-count">0</span></a>
+        </div> 
+    </nav>
     <main class="main-content">
       <section class="product-showcase">
         <h2 class="section-title">Nossos Produtos</h2>
-    <p class="section-intro">
-          Explore nosso universo de histórias. Aqui na BookCulture,
-          cada livro foi selecionado para inspirar, entreter e transformar.
-          Mergulhe em nosso catálogo completo e encontre a leitura perfeita para o seu momento.
-    </p>
+        <p class="section-intro">Explore nosso universo de histórias. Mergulhe em nosso catálogo completo e encontre a leitura perfeita.</p>
         <div class="product-grid">
-          <div class="product-card">
-            <img
-              src="img/produto 1.jpg"
-              alt="Daisy Jones and The Six"
-              class="product-image"
-            />
-            <div class="product-info">
-              <h3 class="product-title">Daisy Jones and The Six</h3>
-              <p class="product-price">R$ 40,00</p>
-              <p class="product-description">
-                Narrado como um documentário, o livro revela os bastidores 
-                da ascensão meteórica e
-                da separação misteriosa da maior banda de rock dos anos 70.
-              </p>
-              <button class="buy-button">Comprar</button>
+            
+            <?php while($produto = $resultado_produtos->fetch_assoc()): ?>
+              <div class="product-card">
+                <img src="img/<?php echo htmlspecialchars($produto['imagem']); ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="product-image"/>
+                <div class="product-info">
+                  <h3 class="product-title"><?php echo htmlspecialchars($produto['nome']); ?></h3>
+                  <p class="product-price">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
+                  <p class="product-description"><?php echo htmlspecialchars($produto['descricao']); ?></p>
+                  <button class="buy-button">Comprar</button>
+                </div>
+              </div>
+            <?php endwhile; ?>
             </div>
-          </div>
-
-          <div class="product-card">
-            <img
-              src="img/produto 2.jpg"
-              alt="Pessoas normais"
-              class="product-image"
-            />
-            <div class="product-info">
-              <h3 class="product-title">Pessoas normais</h3>
-              <p class="product-price">R$ 39,90</p>
-              <p class="product-description">
-              Dois jovens da mesma cidade, mas de mundos diferentes, 
-              iniciam uma conexão complexa e magnética que
-              irá definir suas vidas nos anos seguintes.
-              </p>
-              <button class="buy-button">Comprar</button>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <img
-              src="img/produto 3.jpeg"
-              alt="O homem de giz"
-              class="product-image"
-            />
-            <div class="product-info">
-              <h3 class="product-title">O homem de giz</h3>
-              <p class="product-price">R$ 34,00</p>
-              <p class="product-description">
-              Décadas após um jogo infantil terminar em tragédia, 
-              os segredos de um verão retornam para assombrar um grupo de amigos.
-              </p>
-              <button class="buy-button">Comprar</button>
-            </div>
-          </div>
-                    <div class="product-card">
-            <img
-              src="img/produto 4.jpeg"
-              alt="O Meu Pé de Laranja Lima"
-              class="product-image"
-            />
-            <div class="product-info">
-              <h3 class="product-title">O Meu Pé de Laranja Lima</h3>
-              <p class="product-price">R$ 35,00</p>
-              <p class="product-description">
-                A história de Zezé, um menino de seis anos que encontra consolo e amizade em um pé de laranja lima, 
-                enquanto enfrenta a dura realidade de sua vida familiar.
-              </p>
-              <button class="buy-button">Comprar</button>
-            </div>
-          </div>
-        </div>
       </section>
     </main>
-
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-column">
@@ -149,6 +74,7 @@
             e para amantes de livros.
           </p>
         </div>
+
         <div class="footer-column">
           <h4 class="footer-title">Links Rápidos</h4>
           <ul class="footer-links">
@@ -158,13 +84,14 @@
             <li><a href="sobre.php">Sobre Nós</a></li>
           </ul>
         </div>
+
         <div class="footer-column">
           <h4 class="footer-title">Contato</h4>
           <p>Precisa de ajuda? Nos envie um e-mail!</p>
           <p><strong>Email:</strong> contato@bookculture.com.br</p>
         </div>
+
         <div class="footer-column">
-          <h4 class="footer-title">Siga-nos</h4>
           <div class="social-links">
             <a href="#" aria-label="Instagram"
               ><i class="fa-brands fa-instagram"></i
@@ -178,10 +105,11 @@
           </div>
         </div>
       </div>
+
       <div class="footer-bottom">
         <p>© 2025 BookCulture. Todos os direitos reservados.</p>
       </div>
     </footer>
     <script src="js/script.js"></script>
-  </body>
+</body>
 </html>

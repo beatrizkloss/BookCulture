@@ -1,0 +1,42 @@
+body {
+  background-color: #f8f9fa;
+}
+
+.dashboard-banner {
+  background-image: url("../../img/banner-admin.jpg");
+  background-size: cover;
+  background-position: center;
+  margin-top: 20px;
+}
+
+.banner-overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.stat-card {
+  height: 100%;
+  padding: 2.5rem;
+  color: white;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.stat-card.bg-produtos {
+  background-color: #6a1b9a;
+}
+
+.stat-card.bg-clientes {
+  background-color: #5e35b1;
+}
+
+.stat-card.bg-admins {
+  background-color: #8e24aa;
+}
+
+.stat-card h2 {
+  font-weight: 300;
+}
+.stat-card .display-4 {
+  font-weight: 700;
+}
