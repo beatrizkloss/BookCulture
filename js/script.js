@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // --- LÓGICA DO MENU HAMBURGER E FORMULÁRIO DE LOGIN ---
   const hamburger = document.querySelector(".hamburger-menu");
   if (hamburger) {
     const navMenu = document.querySelector(".nav-menu");
@@ -25,4 +26,57 @@ document.addEventListener("DOMContentLoaded", () => {
       loginForm.style.display = "block";
     });
   }
+
+  // --- LÓGICA DO FORMULÁRIO DE PAGAMENTO ---
+  const creditCardForm = document.getElementById("creditCardForm");
+  const paymentRadios = document.querySelectorAll(
+    'input[name="paymentMethod"]'
+  );
+
+  if (creditCardForm && paymentRadios.length > 0) {
+    const toggleCardForm = () => {
+      const selectedCard = document.querySelector(
+        'input[name="paymentMethod"]:checked'
+      );
+      if (
+        selectedCard &&
+        (selectedCard.value === "credito" || selectedCard.value === "debito")
+      ) {
+        creditCardForm.style.display = "block";
+      } else {
+        creditCardForm.style.display = "none";
+      }
+    };
+    paymentRadios.forEach((radio) => {
+      radio.addEventListener("change", toggleCardForm);
+    });
+    toggleCardForm();
+  }
 });
+
+// --- FUNÇÃO DO CARRINHO  ---
+function adicionarAoCarrinho(produtoId) {
+  const mensagemDiv = document.getElementById("mensagem-carrinho");
+  fetch(`carrinho_acoes.php?adicionar=${produtoId}`)
+    .then((response) => response.text())
+    .then((totalItens) => {
+      const cartCount = document.getElementById("cart-count");
+      if (cartCount) {
+        cartCount.innerText = totalItens;
+      }
+      if (mensagemDiv) {
+        mensagemDiv.innerText = "Produto adicionado com sucesso ao carrinho!";
+        mensagemDiv.style.display = "block";
+        setTimeout(() => {
+          mensagemDiv.style.opacity = "1";
+        }, 10);
+        setTimeout(() => {
+          mensagemDiv.style.opacity = "0";
+          setTimeout(() => {
+            mensagemDiv.style.display = "none";
+          }, 500);
+        }, 3000);
+      }
+    })
+    .catch((error) => console.error("Erro:", error));
+}

@@ -1,8 +1,7 @@
 <?php 
 session_start();
 require_once 'services/conexao.php';
-
-// Busca TODOS os produtos no banco de dados, ordenados por nome
+$cart_count = isset($_SESSION['carrinho']) ? array_sum($_SESSION['carrinho']) : 0;
 $resultado_produtos = $conexao->query("SELECT * FROM produtos ORDER BY nome ASC");
 ?>
 <!DOCTYPE html>
@@ -42,10 +41,14 @@ $resultado_produtos = $conexao->query("SELECT * FROM produtos ORDER BY nome ASC"
                     </div>
                 </div>
             <?php endif; ?>
-            <a href="carrinho.php" class="cart-button"><i class="fa-solid fa-cart-shopping"></i><span id="cart-count">0</span></a>
+                    <a href="carrinho.php" class="cart-button">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count"><?php echo $cart_count; ?></span>
+        </a>
         </div> 
     </nav>
     <main class="main-content">
+      <div id="mensagem-carrinho" class="mensagem-sucesso"></div>
       <section class="product-showcase">
         <h2 class="section-title">Nossos Produtos</h2>
         <p class="section-intro">Explore nosso universo de histórias. Mergulhe em nosso catálogo completo e encontre a leitura perfeita.</p>
@@ -58,7 +61,9 @@ $resultado_produtos = $conexao->query("SELECT * FROM produtos ORDER BY nome ASC"
                   <h3 class="product-title"><?php echo htmlspecialchars($produto['nome']); ?></h3>
                   <p class="product-price">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
                   <p class="product-description"><?php echo htmlspecialchars($produto['descricao']); ?></p>
-                  <button class="buy-button">Comprar</button>
+                  <button class="buy-button" onclick="adicionarAoCarrinho(<?php echo $produto['id']; ?>)">
+                      Comprar
+                  </button>
                 </div>
               </div>
             <?php endwhile; ?>
@@ -111,5 +116,6 @@ $resultado_produtos = $conexao->query("SELECT * FROM produtos ORDER BY nome ASC"
       </div>
     </footer>
     <script src="js/script.js"></script>
+    
 </body>
 </html>
