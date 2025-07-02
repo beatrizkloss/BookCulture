@@ -2,30 +2,35 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>BookCulture</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Admin - BookCulture</title>
     
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/media-queries.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 </head>
+
+<body>
     <header class="site-header">
       <h1 class="logo">BookCulture</h1>
     </header>
-        <nav class="main-nav">
-            <button class="hamburger-menu" aria-label="Abrir menu">
-                <i class="fa-solid fa-bars"></i>
-            </button>
 
-            <ul class="nav-menu">
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="../sobre.php">Sobre</a></li>
-                <li><a href="../produtos.php">Produtos</a></li>
-                <li><a href="../novidade.php">Novidades</a></li>
-            </ul>
+    <nav class="main-nav">
+        <button class="hamburger-menu" aria-label="Abrir menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../sobre.php">Sobre</a></li>
+            <li><a href="../produtos.php">Produtos</a></li>
+            <li><a href="../novidade.php">Novidades</a></li>
+        </ul>
+        <div class="nav-right">
+            </div>
+    </nav>
 
-            <div class="nav-right">
-                </div>
-        </nav>
-<body>
     <main class="main-content">
         <div class="auth-container" style="margin-top: 5rem;">
             <div class="auth-form">
@@ -49,6 +54,7 @@
             </div>
         </div>
     </main>
-    <script src="js/script.js"></script>
+
+    <script src="../js/script.js"></script>
 </body>
 </html>

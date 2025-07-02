@@ -41,10 +41,7 @@ $cart_count = isset($_SESSION['carrinho']) ? array_sum($_SESSION['carrinho']) : 
        <nav class="main-nav">
         <button class="hamburger-menu" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></button>
         <ul class="nav-menu">
-            <li><a href="index.php">Home</a></li>
-            <li><a href="sobre.php">Sobre</a></li>
-            <li><a href="produtos.php">Produtos</a></li>
-            <li><a href="novidade.php">Novidades</a></li>
+            <li><a href="carrinho.php">Voltar</a></li>
         </ul>
         <div class="nav-right">
             <?php if (isset($_SESSION['user_id'])): ?>
