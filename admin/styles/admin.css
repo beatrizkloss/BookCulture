@@ -40,3 +40,7 @@ body {
 .stat-card .display-4 {
   font-weight: 700;
 }
+
+.main-nav {
+  position: relative;
+}
