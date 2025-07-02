@@ -2,7 +2,7 @@
 session_start();
 require_once 'services/conexao.php';
 
-// Busca os 4 produtos mais recentes cadastrados
+$cart_count = isset($_SESSION['carrinho']) ? array_sum($_SESSION['carrinho']) : 0;
 $resultado_destaques = $conexao->query("SELECT * FROM produtos ORDER BY id DESC LIMIT 4");
 ?>
 <!DOCTYPE html>
@@ -36,10 +36,14 @@ $resultado_destaques = $conexao->query("SELECT * FROM produtos ORDER BY id DESC 
                     <div class="dropdown-menu"><a href="registrar.php">📖 Cliente</a><a href="admin/login.php">📚 Administrador</a></div>
                 </div>
             <?php endif; ?>
-            <a href="carrinho.php" class="cart-button"><i class="fa-solid fa-cart-shopping"></i><span id="cart-count">0</span></a>
+           <a href="carrinho.php" class="cart-button">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count"><?php echo $cart_count; ?></span>
+        </a>
         </div>
     </nav>
     <main class="main-content">
+      <div id="mensagem-carrinho" class="mensagem-sucesso"></div>
       <section class="banner-section">
         <h2>Bem-vindo à BookCulture</h2>
         <p>Encontre os melhores livros para expandir seu conhecimento e imaginação.</p>
@@ -55,7 +59,9 @@ $resultado_destaques = $conexao->query("SELECT * FROM produtos ORDER BY id DESC 
                   <h3 class="product-title"><?php echo htmlspecialchars($produto['nome']); ?></h3>
                   <p class="product-price">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
                   <p class="product-description"><?php echo htmlspecialchars($produto['descricao']); ?></p>
-                  <button class="buy-button">Comprar</button>
+                  <button class="buy-button" onclick="adicionarAoCarrinho(<?php echo $produto['id']; ?>)">
+                  Comprar
+                  </button>
                 </div>
               </div>
             <?php endwhile; ?>
@@ -108,5 +114,6 @@ $resultado_destaques = $conexao->query("SELECT * FROM produtos ORDER BY id DESC 
       </div>
     </footer>
     <script src="js/script.js"></script>
+    
 </body>
 </html>

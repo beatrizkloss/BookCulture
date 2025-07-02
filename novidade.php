@@ -2,7 +2,7 @@
 session_start();
 require_once 'services/conexao.php';
 
-// Busca APENAS os produtos marcados como novidade
+$cart_count = isset($_SESSION['carrinho']) ? array_sum($_SESSION['carrinho']) : 0;
 $resultado_novidades = $conexao->query("SELECT * FROM produtos WHERE is_novidade = 1 ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
@@ -36,10 +36,14 @@ $resultado_novidades = $conexao->query("SELECT * FROM produtos WHERE is_novidade
                     <div class="dropdown-menu"><a href="registrar.php">📖 Cliente</a><a href="admin/login.php">📚 Administrador</a></div>
                 </div>
             <?php endif; ?>
-            <a href="carrinho.php" class="cart-button"><i class="fa-solid fa-cart-shopping"></i><span id="cart-count">0</span></a>
+                    <a href="carrinho.php" class="cart-button">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span id="cart-count"><?php echo $cart_count; ?></span>
+        </a>
         </div>
     </nav>
     <main class="main-content">
+      <div id="mensagem-carrinho" class="mensagem-sucesso"></div>
         <h2 class="section-title">Novidades</h2>
         <p class="section-intro">Fique por dentro dos lançamentos mais recentes e das obras que acabaram de chegar ao nosso acervo!</p>
         <section class="product-showcase">
@@ -53,7 +57,9 @@ $resultado_novidades = $conexao->query("SELECT * FROM produtos WHERE is_novidade
                           <h3 class="product-title"><?php echo htmlspecialchars($produto['nome']); ?></h3>
                           <p class="product-price">R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?></p>
                           <p class="product-description"><?php echo htmlspecialchars($produto['descricao']); ?></p>
-                          <button class="buy-button">Comprar</button>
+                          <button class="buy-button" onclick="adicionarAoCarrinho(<?php echo $produto['id']; ?>)">
+                          Comprar
+                          </button>
                         </div>
                       </div>
                     <?php endwhile; ?>

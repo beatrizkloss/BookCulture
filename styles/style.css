@@ -555,3 +555,20 @@ body {
   font-size: 1.1rem;
   color: #555;
 }
+/* --- MENSAGEM DE SUCESSO AO ADICIONAR AO CARRINHO --- */
+.mensagem-sucesso {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  background-color: #28a745;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
