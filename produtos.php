@@ -18,6 +18,7 @@ $resultado_produtos = $conexao->query("SELECT * FROM produtos ORDER BY nome ASC"
     <header class="site-header">
       <h1 class="logo">BookCulture</h1>
     </header>
+    <!-- Barra de Navegação -->
     <nav class="main-nav">
         <button class="hamburger-menu" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></button>
         <ul class="nav-menu">
@@ -26,6 +27,7 @@ $resultado_produtos = $conexao->query("SELECT * FROM produtos ORDER BY nome ASC"
             <li><a href="produtos.php">Produtos</a></li>
             <li><a href="novidade.php">Novidades</a></li>
         </ul>
+        <!-- Botão de Login usuário e admin / Carrinho -->
         <div class="nav-right">
             <?php if (isset($_SESSION['user_id'])): ?>
                 <div class="user-info">
@@ -49,6 +51,7 @@ $resultado_produtos = $conexao->query("SELECT * FROM produtos ORDER BY nome ASC"
     </nav>
     <main class="main-content">
       <div id="mensagem-carrinho" class="mensagem-sucesso"></div>
+      <!-- Seção de produtos -->
       <section class="product-showcase">
         <h2 class="section-title">Nossos Produtos</h2>
         <p class="section-intro">Explore nosso universo de histórias. Mergulhe em nosso catálogo completo e encontre a leitura perfeita.</p>
@@ -70,6 +73,7 @@ $resultado_produtos = $conexao->query("SELECT * FROM produtos ORDER BY nome ASC"
             </div>
       </section>
     </main>
+     <!-- footer -->
     <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-column">

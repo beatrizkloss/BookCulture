@@ -2,6 +2,7 @@
 require_once 'verifica_admin.php';
 require_once '../services/conexao.php';
 
+//lógica para remover produto da lista de novidades
 if (isset($_GET['remover_id'])) {
     $id_para_remover = $_GET['remover_id'];
     
@@ -19,6 +20,7 @@ if (isset($_GET['remover_id'])) {
 
 require_once 'includes/header.php';
 
+// Consulta para obter produtos marcados como novidades
 $resultado = $conexao->query("SELECT * FROM produtos WHERE is_novidade = 1 ORDER BY id DESC");
 ?>
 
@@ -26,6 +28,7 @@ $resultado = $conexao->query("SELECT * FROM produtos WHERE is_novidade = 1 ORDER
 
 <?php if(isset($erro)) echo "<div class='alert alert-danger'>$erro</div>"; ?>
 
+<!-- Tabela de produtos marcados como novidades -->
 <div class="table-responsive">
   <table class="table table-bordered table-striped align-middle text-center">
     <thead class="table-dark">
@@ -85,7 +88,7 @@ $resultado = $conexao->query("SELECT * FROM produtos WHERE is_novidade = 1 ORDER
 
 
 <?php require_once 'includes/footer.php'; ?>
-
+<!-- Botão de remoção -->
 <script>
 const confirmRemoveModal = document.getElementById('confirmRemoveModal');
 confirmRemoveModal.addEventListener('show.bs.modal', function (event) {

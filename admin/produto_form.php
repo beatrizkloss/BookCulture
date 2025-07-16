@@ -2,6 +2,7 @@
 require_once 'verifica_admin.php';
 require_once '../services/conexao.php';
 
+//formulário para editar produtos
 $page_title = 'Adicionar Produto';
 $produto = [
     'id' => '',

@@ -1,12 +1,12 @@
 <?php
 session_start();
-
+// Verifica se o carrinho está vazio ou se o usuário não está logado
 if (empty($_SESSION['carrinho']) || !isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit();
 }
 require_once 'services/conexao.php';
-
+// Verifica se a etapa de pagamento foi enviada
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'processar_pagamento') {
     $_SESSION['payment_info'] = ['method' => $_POST['paymentMethod'] ?? 'N/A'];
     if ($_POST['paymentMethod'] === 'credito' || $_POST['paymentMethod'] === 'debito') {
@@ -58,7 +58,7 @@ $cart_count = isset($_SESSION['carrinho']) ? array_sum($_SESSION['carrinho']) : 
         <div class="container mt-4">
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    
+                    <!-- pagamento -->
                     <?php if ($etapa === 'pagamento'): ?>
                         <div class="card shadow-sm">
                             <div class="card-header bg-dark text-white"><h3>Forma de Pagamento</h3></div>
@@ -99,6 +99,7 @@ $cart_count = isset($_SESSION['carrinho']) ? array_sum($_SESSION['carrinho']) : 
                             }
                             $payment_info = $_SESSION['payment_info'];
                         ?>
+                <!-- Resumo do Pedido -->
                         <div class="card shadow-sm">
                             <div class="card-header bg-dark text-white"><h3>Resumo do Pedido</h3></div>
                             <div class="card-body">
@@ -116,7 +117,7 @@ $cart_count = isset($_SESSION['carrinho']) ? array_sum($_SESSION['carrinho']) : 
                                 <div class="text-center mt-4"><a href="checkout.php?etapa=agradecimento" class="buy-button" style="text-decoration:none;">Confirmar e Pagar</a></div>
                             </div>
                         </div>
-
+                <!-- fim do processo de pagamento -->
                     <?php elseif ($etapa === 'agradecimento'): ?>
                         <div class="text-center py-5"><h2 class="section-title">Obrigado!</h2><p class="lead">Sua compra foi finalizada com sucesso.</p><a href="produtos.php" class="btn btn-primary mt-4">Continuar Comprando</a></div>
                     <?php endif; ?>

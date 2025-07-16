@@ -32,7 +32,7 @@
     </nav>
 
     <main class="main-content">
-        <div class="auth-container" style="margin-top: 5rem;">
+        <div class="auth-container">
             <div class="auth-form">
               <h2>Acesso Administrativo</h2>
               

@@ -2,6 +2,7 @@
 require_once 'verifica_admin.php';
 require_once '../services/conexao.php';
 
+// formulário para editar usuários
 if (!isset($_GET['id'])) {
     header("Location: usuarios.php");
     exit();

@@ -2,6 +2,7 @@
 require_once 'verifica_admin.php';
 require_once '../services/conexao.php';
 
+// --- LÓGICA PARA ADICIONAR NOVO USUÁRIO ---
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adicionar'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
@@ -58,7 +59,7 @@ $clientes_res = $conexao->query("SELECT id, nome, email FROM usuarios WHERE is_a
 
 <?php if(isset($erro)) echo "<div class='alert alert-danger'>$erro</div>"; ?>
 <?php if(isset($_GET['status']) && in_array($_GET['status'], ['sucesso', 'excluido', 'editado_sucesso'])) echo "<div class='alert alert-success'>Ação executada com sucesso!</div>"; ?>
-
+<!-- Formulário para adicionar novo usuário -->
 <div class="card mb-4 shadow-sm">
   <div class="card-header bg-dark text-white">Adicionar novo usuário</div>
     <div class="card-body">
@@ -135,6 +136,7 @@ $clientes_res = $conexao->query("SELECT id, nome, email FROM usuarios WHERE is_a
 <?php require_once 'includes/footer.php'; ?>
 
 <script>
+    // botão de exclusão
 const confirmDeleteModal = document.getElementById('confirmDeleteModal');
 confirmDeleteModal.addEventListener('show.bs.modal', function (event) {
   const button = event.relatedTarget;

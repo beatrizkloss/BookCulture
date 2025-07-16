@@ -1,34 +1,39 @@
 <?php
-session_start(); 
+session_start();
 require_once 'services/conexao.php';
 
+// LÓGICA DE CADASTRO 
 if (isset($_POST['register_user'])) {
-    $nome = mysqli_real_escape_string($conexao, $_POST['nome']);
-    $email = mysqli_real_escape_string($conexao, $_POST['email_cadastro']);
-    $senha = mysqli_real_escape_string($conexao, $_POST['senha_cadastro']);
+    $nome = $_POST['nome'];
+    $email = $_POST['email_cadastro'];
+    $senha = $_POST['senha_cadastro'];
     $senha_hashed = password_hash($senha, PASSWORD_DEFAULT);
 
-    $query = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha_hashed')";
+    $stmt = $conexao->prepare("INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)");
+    $stmt->bind_param("sss", $nome, $email, $senha_hashed);
     
-    if (mysqli_query($conexao, $query)) {
+    if ($stmt->execute()) {
         $mensagem_cadastro = "Cadastro realizado com sucesso! Faça o login.";
     } else {
-        $mensagem_cadastro = "Erro ao cadastrar: " . mysqli_error($conexao);
+        $mensagem_cadastro = "Erro: Este email já está em uso.";
     }
 }
+
+// LÓGICA DE LOGIN 
 if (isset($_POST['login_user'])) {
-    $email = mysqli_real_escape_string($conexao, $_POST['email']);
-    $senha = mysqli_real_escape_string($conexao, $_POST['senha']);
+    $email = $_POST['email'];
+    $senha_digitada = $_POST['senha'];
 
-    $query = "SELECT id, nome, senha FROM usuarios WHERE email = '$email'";
-    $resultado = mysqli_query($conexao, $query);
+    $stmt = $conexao->prepare("SELECT id, nome, senha FROM usuarios WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
 
-    if (mysqli_num_rows($resultado) == 1) {
-        $usuario = mysqli_fetch_assoc($resultado);
-        if (password_verify($senha, $usuario['senha'])) {
+    if ($resultado->num_rows == 1) {
+        $usuario = $resultado->fetch_assoc();
+        if (password_verify($senha_digitada, $usuario['senha'])) {
             $_SESSION['user_id'] = $usuario['id'];
             $_SESSION['user_name'] = $usuario['nome'];
-            
             header("Location: index.php"); 
             exit();
         } else {
@@ -39,6 +44,8 @@ if (isset($_POST['login_user'])) {
     }
 }
 ?>
+
+<!-- LOGIN E CADASTRO -->
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -79,7 +86,8 @@ if (isset($_POST['login_user'])) {
     </div>
 
     <div class="auth-container">
-        
+        <!-- Formulário de Login -->  
+        <div class="auth-toggle">
         <div class="auth-form" id="login-form">
           <h2>Login</h2>
           <?php if(isset($mensagem_login)) { echo "<div class='message error'>$mensagem_login</div>"; } ?>
@@ -92,7 +100,7 @@ if (isset($_POST['login_user'])) {
             <p class="form-toggle">Não tem uma conta? <a href="#" id="show-register">Cadastre-se</a></p>
           </form>
         </div>
-
+        <!-- Formulário de Cadastro -->
         <div class="auth-form" id="cadastro-form" style="display: none;">
           <h2>Cadastro</h2>
           <?php if(isset($mensagem_cadastro)) { echo "<div class='message success'>$mensagem_cadastro</div>"; } ?>

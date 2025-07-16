@@ -6,7 +6,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once 'services/conexao.php';
-
 $carrinho_vazio = true;
 $produtos_carrinho = [];
 $total_compra = 0;

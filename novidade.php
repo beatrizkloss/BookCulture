@@ -19,6 +19,7 @@ $resultado_novidades = $conexao->query("SELECT * FROM produtos WHERE is_novidade
     <header class="site-header">
       <h1 class="logo">BookCulture</h1>
     </header>
+    <!-- Barra de Navegação -->
     <nav class="main-nav">
         <button class="hamburger-menu" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></button>
         <ul class="nav-menu">
@@ -27,6 +28,7 @@ $resultado_novidades = $conexao->query("SELECT * FROM produtos WHERE is_novidade
             <li><a href="produtos.php">Produtos</a></li>
             <li><a href="novidade.php">Novidades</a></li>
         </ul>
+        <!-- Botão de Login usuário e admin / Carrinho -->
         <div class="nav-right">
             <?php if (isset($_SESSION['user_id'])): ?>
                 <div class="user-info"><p>Olá, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p><a href="logout.php" class="logout-button">Sair</a></div>
@@ -42,14 +44,15 @@ $resultado_novidades = $conexao->query("SELECT * FROM produtos WHERE is_novidade
         </a>
         </div>
     </nav>
+    <!-- Conteúdo Principal - título -->
     <main class="main-content">
       <div id="mensagem-carrinho" class="mensagem-sucesso"></div>
         <h2 class="section-title">Novidades</h2>
         <p class="section-intro">Fique por dentro dos lançamentos mais recentes e das obras que acabaram de chegar ao nosso acervo!</p>
+        <!-- Seção de Novidades - produtos -->
         <section class="product-showcase">
             <div class="product-grid">
-
-                <?php if ($resultado_novidades && $resultado_novidades->num_rows > 0): ?>
+              <?php if ($resultado_novidades && $resultado_novidades->num_rows > 0): ?>
                     <?php while($produto = $resultado_novidades->fetch_assoc()): ?>
                       <div class="product-card">
                         <img src="img/<?php echo htmlspecialchars($produto['imagem']); ?>" alt="<?php echo htmlspecialchars($produto['nome']); ?>" class="product-image"/>
@@ -64,11 +67,12 @@ $resultado_novidades = $conexao->query("SELECT * FROM produtos WHERE is_novidade
                       </div>
                     <?php endwhile; ?>
                 <?php else: ?>
-                    <p style="text-align: center; grid-column: 1 / -1;">Nenhuma novidade cadastrada no momento.</p>
+                    <p>Nenhuma novidade cadastrada no momento.</p>
                 <?php endif; ?>
                 </div>
         </section>
     </main>
+    <!-- footer -->
        <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-column">

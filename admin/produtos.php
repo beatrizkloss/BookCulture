@@ -2,6 +2,7 @@
 require_once 'verifica_admin.php';
 require_once '../services/conexao.php';
 
+// Lógica para adicionar novo produto
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adicionar'])) {
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adicionar'])) {
         $erro = "Erro ao adicionar o produto: " . $stmt->error;
     }
 }
-
+// Lógica para excluir produto
 if (isset($_GET['excluir_id'])) {
     $id_para_excluir = $_GET['excluir_id'];
     
@@ -37,13 +38,14 @@ if (isset($_GET['excluir_id'])) {
 }
 
 require_once 'includes/header.php';
+// Consulta para obter todos os produtos
 $resultado = $conexao->query("SELECT * FROM produtos ORDER BY id DESC");
 ?>
 
 <h2 class="my-4">Gerenciamento de Produtos</h2>
 
 <?php if(isset($erro)) echo "<div class='alert alert-danger'>$erro</div>"; ?>
-
+<!-- Formulário para adicionar novo produto -->
 <div class="card mb-4 shadow-sm">
   <div class="card-header bg-dark text-white">Adicionar novo livro</div>
   <div class="card-body">
@@ -133,6 +135,7 @@ $resultado = $conexao->query("SELECT * FROM produtos ORDER BY id DESC");
 <?php require_once 'includes/footer.php'; ?>
 
 <script>
+// botão de exclusão
 const confirmDeleteModal = document.getElementById('confirmDeleteModal');
 confirmDeleteModal.addEventListener('show.bs.modal', function (event) {
   const button = event.relatedTarget;

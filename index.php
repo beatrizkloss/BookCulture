@@ -16,9 +16,11 @@ $resultado_destaques = $conexao->query("SELECT * FROM produtos ORDER BY id DESC 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 </head>
 <body>
+  <!-- Header -->
     <header class="site-header">
       <h1 class="logo">BookCulture</h1>
     </header>
+    <!-- Barra de Navegação -->
     <nav class="main-nav">
         <button class="hamburger-menu" aria-label="Abrir menu"><i class="fa-solid fa-bars"></i></button>
         <ul class="nav-menu">
@@ -27,6 +29,7 @@ $resultado_destaques = $conexao->query("SELECT * FROM produtos ORDER BY id DESC 
             <li><a href="produtos.php">Produtos</a></li>
             <li><a href="novidade.php">Novidades</a></li>
         </ul>
+      <!-- Botão de Login usuário e admin / Carrinho -->
         <div class="nav-right">
             <?php if (isset($_SESSION['user_id'])): ?>
                 <div class="user-info"><p>Olá, <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</p><a href="logout.php" class="logout-button">Sair</a></div>
@@ -42,12 +45,14 @@ $resultado_destaques = $conexao->query("SELECT * FROM produtos ORDER BY id DESC 
         </a>
         </div>
     </nav>
+    <!-- Conteúdo Principal - Banner -->
     <main class="main-content">
       <div id="mensagem-carrinho" class="mensagem-sucesso"></div>
       <section class="banner-section">
         <h2>Bem-vindo à BookCulture</h2>
         <p>Encontre os melhores livros para expandir seu conhecimento e imaginação.</p>
       </section>
+      <!-- Seção de Destaques - produtos -->
       <section class="product-showcase">
         <h2 class="section-title">Destaques</h2>
         <div class="product-grid">
@@ -68,6 +73,7 @@ $resultado_destaques = $conexao->query("SELECT * FROM produtos ORDER BY id DESC 
             </div>
       </section>
     </main>
+    <!-- footer -->
        <footer class="site-footer">
       <div class="footer-content">
         <div class="footer-column">
