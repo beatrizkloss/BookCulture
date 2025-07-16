@@ -1,17 +1,13 @@
 # 📖 BookCulture 
 
-Bem-vindo ao repositório do projeto BookCulture! Este é um sistema web completo desenvolvido como projeto acadêmico, apresentando um site de e-commerce para uma livraria e um painel de administração robusto para gerenciamento de conteúdo.
-
-## 🚀 Sobre o Projeto
-
-Este projeto foi construído para cumprir os requisitos de um trabalho acadêmico, abrangendo desde a criação de uma interface dinâmica para o cliente até um painel administrativo seguro e funcional para o gerenciamento do site. O sistema demonstra conceitos de desenvolvimento back-end com PHP e MySQL, e front-end com HTML, CSS e JavaScript.
+Bem-vindo ao repositório do projeto BookCulture! Um site de e-commerce para uma livraria e um painel de administração robusto para gerenciamento de conteúdo. Este projeto foi construído para cumprir os requisitos de um trabalho acadêmico, abrangendo desde a criação de uma interface dinâmica para o cliente até um painel administrativo seguro e funcional para o gerenciamento do site. O sistema demonstra conceitos de desenvolvimento back-end com PHP e MySQL, e front-end com HTML, CSS e JavaScript.
 
 ## 🛠️ Tecnologias Utilizadas
 
 * **Back-end:** PHP 
 * **Banco de Dados:** MySQL (gerenciado via phpMyAdmin)
 * **Front-end:** HTML5, CSS3, JavaScript
-* **Frameworks/Bibliotecas:** Bootstrap 5 
+* **Frameworks/Bibliotecas:** Bootstrap 
 
 ## ✨ Funcionalidades Implementadas
 
